@@ -1,0 +1,95 @@
+<!-- Definimos el tipo de documento y el lenguaje -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Definimos el conjunto de caracteres y la ventana de visualizacion -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Definimos el titulo de la pagina -->
+    <title>Convertir Archivos - UAEMex</title>
+    <!-- Enlazamos el archivo de estilos css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <!-- Definimos el encabezado de la página -->
+    <header>
+         <!-- Definimos la parte superior del encabezado -->
+         <div class="header-top">
+            <!-- Definimos los iconos de redes sociales -->
+            <div class="social-icons">
+                <!-- Enlazamos los iconos de redes sociales -->
+                <a href="https://www.facebook.com/RVEcatepec" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="icon">
+                </a>
+                <a href="https://www.youtube.com/uaemex" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733646.png" alt="YouTube" class="icon">
+                </a>
+                <a href="mailto:correro@ejemplo.com">
+                    <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Email" class="icon">
+                    correro@ejemplo.com
+                </a>
+            </div>
+        </div>
+        <!-- Definimos la barra de navegación -->
+        <nav class="navbar">
+            <!-- Definimos el logotipo de la página -->
+            <a href="#" class="logo">
+                <img src="https://www.uaemex.mx/images/2024/logo_menu/uaem-dos-lineas.jpg" alt="UAEMex Logo">
+            </a>
+            <!-- Definimos los enlaces de navegación -->
+            <ul class="nav-links">
+                <li><a href="#">Convertir</a></li>
+                <li><a href="#">Soporte</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Definimos el contenido principal de la página -->
+    <main>
+        <!-- Definimos la sección de cont -->
+        <section class="cont">
+            <!-- Definimos el título y el texto de la sección -->
+            <h1>Convertir Archivo</h1>
+            <p>Convierte tu tabla de datos a un archivo CSV de manera rápida y segura.</p>
+            <!-- Definimos el formulario de carga de archivo -->
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="file-input" class="form-control">
+                <button type="submit" class="btn">Convertir</button>
+            </form>
+            <!-- Mostramos un mensaje de e o error -->
+            {% if mensaje %}
+                <div class="alert alert-{{ categoria }}">
+                    {{ mensaje }}
+                </div>
+            {% endif %}
+            {% if descargar %}
+                <p>{{ mensaje }}</p>
+                <!-- Despues de dar click en descargar la pagna regresara al principio -->
+                <a href="{{ url_for('descargar', archivo=archivo) }}" class="btn" style="text-decoration: none;" onclick="setTimeout(function(){ window.location.href = '/'; }, 1000);">
+                    Descargar archivo convertido
+                </a>
+            {% endif %}
+        </section>
+         <!-- Definimos la sección de características -->
+        <section class="features">
+            <h2>Características</h2>
+            <ul>
+                <li>Conversión rápida y segura</li>
+                <li>Proximamente compatibilad con pdf</li>
+                <li>Interfaz fácil de usar</li>
+            </ul>
+        </section>
+    </main>
+    <!-- Definimos el pie de página -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Aviso de Privacidad</a>
+                <a href="#">Términos de Uso</a>
+                <a href="#">Contacto</a>
+            </div>
+            <p>&copy; 2024 Sala de Realidad Virtual C.U. UAEM Ecatepec. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
+

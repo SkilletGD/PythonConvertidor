@@ -1,0 +1,187 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.header-top {
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8q_cHbDXjKNSQYIbJIj9dmGZRQcLWn0VgxVFNdpowv2ko9rw1XJHsAKIgZ_cKysN5A&usqp=CAU') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Mover los iconos hacia la derecha */
+    padding-right: 1000px; /* Añadir padding a la derecha */
+}
+
+.social-icons a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.social-icons .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+header {
+    color: #ffffff;
+    padding: 0; /* Eliminar padding del header */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px; /* Añadir padding solo al navbar */
+    background-color: white; /* Fondo blanco para la navbar */
+}
+
+.logo img {
+    width: 200px; /* Ancho del logo */
+    background-color: transparent; /* Elimina el fondo blanco del logo */
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: #006341; /* Color verde UAEMex */
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #004d29; /* Color verde oscuro UAEMex */
+}
+
+.cont {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 40px auto;
+    max-width: 1000px;
+}
+
+.cont h1 {
+    color: #006341;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.cont p {
+    color: #333333;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.features {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.features h2 {
+    color: #006341;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.features ul {
+    list-style: none;
+    padding: 0;
+}
+
+.features li {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333333;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #006341; /* Color verde UAEMex */
+    color: #ffffff;
+    cursor: pointer;
+    margin: 20px 0;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #004d29; /* Color verde oscuro UAEMex */
+}
+
+footer {
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8q_cHbDXjKNSQYIbJIj9dmGZRQcLWn0VgxVFNdpowv2ko9rw1XJHsAKIgZ_cKysN5A&usqp=CAUhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpnWFedD1ked-ktvyRymFX82zdLedfYFEGtAVAXz1L7IYsODf0i2htrZNKcZUDRZP3oA&usqp=CAU') no-repeat center center;
+    background-size: cover;
+    color: #ffffff;
+    padding: 20px 0;
+    margin-top: 40px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.footer-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #dcdcdc;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+/*Quitamos subrayado de la palabra descargar archivo*/
+a.btn {
+    text-decoration: none;
+}
