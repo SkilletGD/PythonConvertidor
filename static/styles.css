@@ -1,3 +1,4 @@
+/* Estilo general */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #ffffff;
@@ -6,6 +7,7 @@ body {
     line-height: 1.6;
 }
 
+/* Header top */
 .header-top {
     background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8q_cHbDXjKNSQYIbJIj9dmGZRQcLWn0VgxVFNdpowv2ko9rw1XJHsAKIgZ_cKysN5A&usqp=CAU') no-repeat center center;
     background-size: cover;
@@ -18,8 +20,9 @@ body {
 .social-icons {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Mover los iconos hacia la derecha */
-    padding-right: 1000px; /* Añadir padding a la derecha */
+    justify-content: flex-end;
+    padding-right: 20px;
+    flex-wrap: wrap;
 }
 
 .social-icons a {
@@ -36,24 +39,24 @@ body {
     margin-right: 5px;
 }
 
+/* Navbar */
 header {
     color: #ffffff;
-    padding: 0; /* Eliminar padding del header */
+    padding: 0;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 10px 20px; /* Añadir padding solo al navbar */
-    background-color: white; /* Fondo blanco para la navbar */
+    padding: 10px 20px;
+    background-color: white;
 }
 
 .logo img {
-    width: 200px; /* Ancho del logo */
-    background-color: transparent; /* Elimina el fondo blanco del logo */
+    width: 150px;
 }
 
 .nav-links {
@@ -64,45 +67,47 @@ header {
 }
 
 .nav-links li {
-    margin-left: 20px;
+    margin-left: 15px;
 }
 
 .nav-links a {
-    color: #006341; /* Color verde UAEMex */
+    color: #006341;
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s;
 }
 
 .nav-links a:hover {
-    color: #004d29; /* Color verde oscuro UAEMex */
+    color: #004d29;
 }
 
+/* Contenedor principal */
 .cont {
     text-align: center;
-    padding: 60px 20px;
+    padding: 40px 20px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin: 40px auto;
-    max-width: 1000px;
+    margin: 20px auto;
+    max-width: 90%;
 }
 
 .cont h1 {
     color: #006341;
-    font-size: 36px;
+    font-size: 28px;
     margin-bottom: 20px;
 }
 
 .cont p {
     color: #333333;
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 20px;
 }
 
+/* Sección de características */
 .features {
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: 90%;
+    margin: 20px auto;
     padding: 20px;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -112,7 +117,7 @@ header {
 
 .features h2 {
     color: #006341;
-    font-size: 28px;
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
@@ -123,16 +128,17 @@ header {
 
 .features li {
     margin-bottom: 10px;
-    font-size: 18px;
+    font-size: 16px;
     color: #333333;
 }
 
+/* Botones */
 .btn {
     display: inline-block;
     padding: 12px 30px;
     border: none;
     border-radius: 5px;
-    background-color: #006341; /* Color verde UAEMex */
+    background-color: #006341;
     color: #ffffff;
     cursor: pointer;
     margin: 20px 0;
@@ -141,11 +147,12 @@ header {
 }
 
 .btn:hover {
-    background-color: #004d29; /* Color verde oscuro UAEMex */
+    background-color: #004d29;
 }
 
+/* Footer */
 footer {
-    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8q_cHbDXjKNSQYIbJIj9dmGZRQcLWn0VgxVFNdpowv2ko9rw1XJHsAKIgZ_cKysN5A&usqp=CAUhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpnWFedD1ked-ktvyRymFX82zdLedfYFEGtAVAXz1L7IYsODf0i2htrZNKcZUDRZP3oA&usqp=CAU') no-repeat center center;
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8q_cHbDXjKNSQYIbJIj9dmGZRQcLWn0VgxVFNdpowv2ko9rw1XJHsAKIgZ_cKysN5A&usqp=CAU') no-repeat center center;
     background-size: cover;
     color: #ffffff;
     padding: 20px 0;
@@ -153,7 +160,7 @@ footer {
 }
 
 .footer-content {
-    max-width: 1200px;
+    max-width: 90%;
     margin: 0 auto;
     text-align: center;
 }
@@ -162,6 +169,7 @@ footer {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .footer-links a {
@@ -181,7 +189,53 @@ footer p {
     font-size: 14px;
 }
 
-/*Quitamos subrayado de la palabra descargar archivo*/
-a.btn {
-    text-decoration: none;
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .social-icons {
+        padding-right: 10px;
+    }
+
+    .features, .cont {
+        margin: 20px auto;
+    }
+
+    .cont h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    .cont h1 {
+        font-size: 20px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    .footer-links a {
+        font-size: 12px;
+    }
 }
