@@ -1,13 +1,13 @@
-<!-- Definimos el tipo de documento y el lenguaje -->
+<!-- Definimos el tipo de documento y el idioma -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es">https://github.com/SkilletGD/PythonConvertidor/blob/main/templates/index.html
 <head>
-    <!-- Definimos el conjunto de caracteres y la ventana de visualizacion -->
+    <!-- Definimos el conjunto de caracteres y la ventana de visualización -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Definimos el titulo de la pagina -->
+    <!-- Definimos el título de la página -->
     <title>Convertir Archivos - UAEMex</title>
-    <!-- Enlazamos el archivo de estilos css -->
+    <!-- Enlazamos el archivo de estilos CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
@@ -21,12 +21,12 @@
                 <a href="https://www.facebook.com/RVEcatepec" target="_blank">
                     <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="icon">
                 </a>
-                <a href="https://www.youtube.com/@labrvuaemexecatepec1974" target="_blank">
+                <a href="https://www.youtube.com/uaemex" target="_blank">
                     <img src="https://cdn-icons-png.flaticon.com/512/733/733646.png" alt="YouTube" class="icon">
                 </a>
-                <a href="mailto:dante143625@gmail.com">
+                <a href="mailto:jjamadorr@uaemex.mx">
                     <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Email" class="icon">
-                    dante143625@gmail.com
+                    jjamadorr@uaemex.mx
                 </a>
             </div>
         </div>
@@ -45,7 +45,7 @@
     </header>
     <!-- Definimos el contenido principal de la página -->
     <main>
-        <!-- Definimos la sección de cont -->
+        <!-- Definimos la sección de contenido -->
         <section class="cont">
             <!-- Definimos el título y el texto de la sección -->
             <h1>Convertir Archivo</h1>
@@ -55,7 +55,7 @@
                 <input type="file" name="file" id="file-input" class="form-control">
                 <button type="submit" class="btn">Convertir</button>
             </form>
-            <!-- Mostramos un mensaje de e o error -->
+            <!-- Mostramos un mensaje de éxito o error -->
             {% if mensaje %}
                 <div class="alert alert-{{ categoria }}">
                     {{ mensaje }}
@@ -63,7 +63,7 @@
             {% endif %}
             {% if descargar %}
                 <p>{{ mensaje }}</p>
-                <!-- Despues de dar click en descargar la pagna regresara al principio -->
+                <!-- Después de dar click en descargar, la página regresará al principio -->
                 <a href="{{ url_for('descargar', archivo=archivo) }}" class="btn" style="text-decoration: none;" onclick="setTimeout(function(){ window.location.href = '/'; }, 1000);">
                     Descargar archivo convertido
                 </a>
@@ -74,7 +74,7 @@
             <h2>Características</h2>
             <ul>
                 <li>Conversión rápida y segura</li>
-                <li>Proximamente compatibilad con pdf</li>
+                <li>Próximamente compatibilidad con PDF</li>
                 <li>Interfaz fácil de usar</li>
             </ul>
         </section>
@@ -87,9 +87,10 @@
                 <a href="#">Términos de Uso</a>
                 <a href="#">Contacto</a>
             </div>
-            <p>&copy; 2024 Sala de Realidad Virtual C.U. UAEM Ecatepec. Todos los derechos reservados.</p>
+            <p>&copy; 2024 Laboratorio de Realidad Virtual C.U. UAEM Ecatepec. Todos los derechos reservados.</p>
         </div>
     </footer>
 </body>
 </html>
+
 
