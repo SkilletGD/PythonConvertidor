@@ -1,120 +1,86 @@
-# Importamos las bibliotecas necesarias para este proyecto
-from flask import Flask, request, render_template, send_file,send_from_directory
-import pandas as pd
-import docx
-import os
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertir Archivos - UAEMex</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="social-icons">
+                <a href="https://www.facebook.com/RVEcatepec" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="icon">
+                </a>
+                <a href="https://www.youtube.com/@labrvuaemexecatepec1974" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733646.png" alt="YouTube" class="icon">
+                </a>
+                <a href="mailto:jjamadorr@uaemex.mx">
+                    <img src="https://cdn-icons-png.flaticon.com/512/281/281769.png" alt="Email" class="icon">
+                    jjamadorr@uaemex.mx
+                </a>
+            </div>
+        </div>
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <img src="{{ url_for('send_asset', path='uaemex-logo.jpg') }}" alt="UAEMex Logo">
+                <img src="{{ url_for('send_asset', path='labo-logo.jpg') }}" alt="Labo logo" class="labo-logo">
+                <img src="{{ url_for('send_asset', path='CU-Ecatepec.jpeg') }}" alt="CU-Ecatepec logo" class="CU-Ecatepec-logo">
+            </a>
+            <ul class="nav-links">
+                
+                <li><a href="#" id="soporteBtn">Soporte</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="cont">
+            <h1>Convertir Archivo</h1>
+            <p>Convierte tu tabla de datos a un archivo CSV de manera rápida y segura.</p>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" id="file-input" class="form-control">
+                <button type="submit" class="btn">Convertir</button>
+            </form>
+            {% if mensaje %}
+                <div class="alert alert-{{ categoria }}">
+                    {{ mensaje }}
+                </div>
+            {% endif %}
+            {% if descargar %}
+                <p>{{ mensaje }}</p>
+                <a href="{{ url_for('descargar', archivo=archivo) }}" class="btn" style="text-decoration: none;" onclick="setTimeout(function(){ window.location.href = '/'; }, 1000);">
+                    Descargar archivo convertido
+                </a>
+            {% endif %}
+        </section>
+        <section class="features">
+            <h2>Características</h2>
+            <ul>
+                <li>Conversión rápida y segura</li>
+                <li>Próximamente compatibilidad con PDF</li>
+                <li>Interfaz fácil de usar</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" id="avisoBtn">Aviso de Privacidad</a>
+                <a href="#" id="terminosBtn">Términos de Uso</a>
+            </div>
+            <p>&copy; 2024 Laboratorio de Realidad Virtual C.U. UAEM Ecatepec. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="modal-text"></p>
+        </div>
+    </div>
 
-def crear_app():
-   # Creamos una instancia para la aplicación Flask
-    app = Flask(__name__)
-
-    # Definimos la ruta donde se guardarán los archivos subidos
-    CARPETA_CARGA = 'uploads'
-
-    # Creamos una carpeta de uploads si no existe
-    if not os.path.exists(CARPETA_CARGA):
-        os.makedirs(CARPETA_CARGA)
-
-    # Ruta para la cual mandamos a llamar al archivo HTML
-    @app.route('/')
-    def index():
-        return render_template('index.html')
-
-    # Ruta para subir archivos, solo solicitudes POST
-    @app.route('/upload', methods=['POST'])
-    def subir_archivos():
-        # Verificamos si se ha enviado un archivo en la solicitud
-        if 'file' not in request.files:
-            mensaje_error = 'No se ha cargado ningún archivo.'
-            tipo_mensaje = 'danger'
-            return render_template('index.html', mensaje=mensaje_error, categoria=tipo_mensaje)
-        
-        # Obtenemos el archivo subido
-        archivo = request.files['file']
-
-        # Verificamos si se ha seleccionado un archivo
-        if archivo.filename == '':
-            mensaje_error = 'Archivo no seleccionado.'
-            tipo_mensaje = 'danger'
-            return render_template('index.html', mensaje=mensaje_error, categoria=tipo_mensaje)
-
-        # Verificamos si el archivo es un archivo docx
-        if not archivo.filename.lower().endswith('.docx'):
-            mensaje_error = 'Archivo no compatible por el momento, por favor cargue un archivo .docx.'
-            tipo_mensaje = 'danger'
-            return render_template('index.html', mensaje=mensaje_error, categoria=tipo_mensaje)
-
-        # Si todo es válido, guardamos el archivo en la carpeta de uploads
-        if archivo:
-            ruta_archivo = os.path.join(CARPETA_CARGA, 'input.docx')
-            archivo.save(ruta_archivo)
-
-            # Convertimos el archivo de docx a csv después de subirlo
-            ruta_salida = os.path.join(CARPETA_CARGA, 'Reporte.csv')
-            try:
-                # Convertimos el archivo a csv con la función convert_docx_to_csv
-                convert_docx_to_csv(ruta_archivo, ruta_salida)
-            except Exception as e:
-                # Si ocurre un error, mostramos el mensaje de error
-                mensaje_error = f'Error al convertir el archivo: {e}'
-                tipo_mensaje = 'danger'
-                return render_template('index.html', mensaje=mensaje_error, categoria=tipo_mensaje)
-
-            # Devolvemos un mensaje de éxito y un enlace para descargar el archivo
-            return render_template('index.html', mensaje='¡Archivo convertido con éxito!', descargar=True, archivo=ruta_salida)
-        
-        # Si no se ha seleccionado un archivo, devolvemos un mensaje de error
-        return render_template('index.html', mensaje='No se ha seleccionado un archivo.', categoria='danger')
-
-    # Ruta para descargar el archivo convertido
-    @app.route('/descargar/<path:archivo>')
-    def descargar(archivo):
-        return send_file(archivo, as_attachment=True)
-    
-    @app.route('/assets/<path:path>')
-    def send_asset(path):
-        return send_from_directory('assets', path)
-
-    # Se actualizo esta parte del codigo debido a que pandas dejo de funcionar con 
-    # df.append desde versiones anteriores, la mejor adaptacion fue df.loc
-    def addReporte(df, movimientos, solicitud):
-        for reg in range(1,len(movimientos)):
-            df.loc[len(df)] = {
-                'ORDEN': solicitud,
-                'TIEMPO DE INICIO': movimientos[reg][1] + " " + movimientos[reg][2],
-                'ACTIVIDAD': movimientos[reg][0],
-                'RESPONSABLE': movimientos[reg][4],
-                'OBSERVACIONES': movimientos[reg][6]
-            }
-        return df
-
-    def convert_docx_to_csv(input_path, output_path):
-        archivo = docx.Document(input_path)
-        tablas = archivo.tables
-        parrafos = archivo.paragraphs
-
-        reporte = pd.DataFrame(columns=['ORDEN', 'TIEMPO DE INICIO', 'ACTIVIDAD', 'RESPONSABLE', 'OBSERVACIONES'])
-        indP = indT = indB = 0
-        indTmovimientos = 0
-        solicitud = ''
-        for parrafo in archivo.paragraphs:
-            if (parrafo.text == ''):
-                indP += 1
-                continue
-            if (parrafo.text == 'INFORMACIÓN GENERAL'):
-                solicitud = [[cell.text for cell in row.cells] for row in tablas[indT].rows][0][1]
-            if (parrafo.text == 'BITACORA DE MOVIMIENTOS'):
-                indTmovimientos += 1
-                movimientos = [[cell.text for cell in row.cells] for row in tablas[indB].rows]
-                reporte = addReporte(reporte, movimientos, solicitud)
-            indP += 1
-            indT += 1
-            indB += 1
-        print('Se encontraron ' + str(indTmovimientos) + 'tablas de movimientos.')
-        reporte.to_csv(output_path, index=False)
-    return app
-
-if __name__ == '__main__':
-    app = crear_app()
-    app.run()
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
